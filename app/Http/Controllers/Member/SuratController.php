@@ -61,6 +61,6 @@ class SuratController extends Controller
             abort(403);
         }
 
-        return Storage::download($surat->file_surat);
+        return Storage::disk('public')->download($surat->file_surat);
     }
 }
