@@ -17,19 +17,18 @@
 
             <!-- Stats Cards -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                <!-- Saldo Simpanan -->
+                <!-- Total Booking -->
                 <div class="bg-gradient-to-br from-green-400 to-green-600 rounded-lg shadow-lg p-6 text-white">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm opacity-90">Saldo Simpanan</p>
-                            <h3 class="text-3xl font-bold mt-2">Rp {{ number_format(Auth::user()->saldo_simpanan, 0, ',', '.') }}</h3>
+                            <p class="text-sm opacity-90">Total Booking Alat</p>
+                            <h3 class="text-3xl font-bold mt-2">{{ Auth::user()->bookings->count() }}</h3>
                         </div>
                         <svg class="w-12 h-12 opacity-50" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" />
-                            <path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd" />
+                            <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
                     </div>
-                    <a href="{{ route('member.simpanan.index') }}" class="mt-4 inline-block text-sm hover:underline">
+                    <a href="{{ route('member.booking.my-bookings') }}" class="mt-4 inline-block text-sm hover:underline">
                         Lihat Detail →
                     </a>
                 </div>
@@ -86,18 +85,18 @@
                             <span class="text-sm font-medium">Belanja</span>
                         </a>
 
-                        <a href="{{ route('member.simpanan.create') }}" class="flex flex-col items-center p-4 bg-yellow-50 rounded-lg hover:bg-yellow-100 transition">
+                        <a href="{{ route('member.booking.index') }}" class="flex flex-col items-center p-4 bg-yellow-50 rounded-lg hover:bg-yellow-100 transition">
                             <svg class="w-8 h-8 text-yellow-600 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                             </svg>
-                            <span class="text-sm font-medium">Setor Simpanan</span>
+                            <span class="text-sm font-medium">Sewa Alat</span>
                         </a>
 
-                        <a href="{{ route('member.simpanan.history') }}" class="flex flex-col items-center p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition">
+                        <a href="{{ route('member.booking.my-bookings') }}" class="flex flex-col items-center p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition">
                             <svg class="w-8 h-8 text-purple-600 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            <span class="text-sm font-medium">Riwayat</span>
+                            <span class="text-sm font-medium">Riwayat Booking</span>
                         </a>
                     </div>
                 </div>

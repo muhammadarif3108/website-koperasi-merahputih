@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Koperasi Merah Putih</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
+
 <body class="bg-gray-100">
     <div class="min-h-screen flex items-center justify-center">
         <div class="max-w-4xl mx-auto text-center px-4">
@@ -22,7 +24,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
                 <div class="bg-white p-6 rounded-lg shadow">
                     <svg class="w-12 h-12 mx-auto mb-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
                     <h3 class="font-semibold text-lg mb-2">E-Surat</h3>
                     <p class="text-sm text-gray-600">Pengajuan surat online dengan mudah dan cepat</p>
@@ -30,7 +32,7 @@
 
                 <div class="bg-white p-6 rounded-lg shadow">
                     <svg class="w-12 h-12 mx-auto mb-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                     </svg>
                     <h3 class="font-semibold text-lg mb-2">Marketplace</h3>
                     <p class="text-sm text-gray-600">Belanja produk koperasi secara online</p>
@@ -38,32 +40,32 @@
 
                 <div class="bg-white p-6 rounded-lg shadow">
                     <svg class="w-12 h-12 mx-auto mb-4 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                     </svg>
-                    <h3 class="font-semibold text-lg mb-2">Simpanan</h3>
-                    <p class="text-sm text-gray-600">Kelola simpanan Anda dengan aman</p>
+                    <h3 class="font-semibold text-lg mb-2">Sewa Alat Pertanian</h3>
+                    <p class="text-sm text-gray-600">Sewa traktor, mesin panen, dan alat pertanian lainnya</p>
                 </div>
             </div>
 
             <!-- CTA Buttons -->
             <div class="flex gap-4 justify-center">
                 @auth
-                    @if(auth()->user()->isAdmin())
-                        <a href="{{ route('admin.dashboard') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition duration-200">
-                            Dashboard Admin
-                        </a>
-                    @else
-                        <a href="{{ route('member.dashboard') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition duration-200">
-                            Dashboard Anggota
-                        </a>
-                    @endif
+                @if(auth()->user()->isAdmin())
+                <a href="{{ route('admin.dashboard') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition duration-200">
+                    Dashboard Admin
+                </a>
                 @else
-                    <a href="{{ route('login') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition duration-200">
-                        Login
-                    </a>
-                    <a href="{{ route('register') }}" class="bg-white hover:bg-gray-50 text-blue-600 font-bold py-3 px-8 rounded-lg border-2 border-blue-600 transition duration-200">
-                        Register
-                    </a>
+                <a href="{{ route('member.dashboard') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition duration-200">
+                    Dashboard Anggota
+                </a>
+                @endif
+                @else
+                <a href="{{ route('login') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition duration-200">
+                    Login
+                </a>
+                <a href="{{ route('register') }}" class="bg-white hover:bg-gray-50 text-blue-600 font-bold py-3 px-8 rounded-lg border-2 border-blue-600 transition duration-200">
+                    Register
+                </a>
                 @endauth
             </div>
 
@@ -84,4 +86,5 @@
         </div>
     </div>
 </body>
+
 </html>

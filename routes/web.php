@@ -6,13 +6,13 @@ use Illuminate\Support\Facades\Route;
 // Member Controllers
 use App\Http\Controllers\Member\SuratController as MemberSuratController;
 use App\Http\Controllers\Member\MarketplaceController;
-use App\Http\Controllers\Member\SimpananController as MemberSimpananController;
+use App\Http\Controllers\Member\BookingController as MemberBookingController;
 
 // Admin Controllers
 use App\Http\Controllers\Admin\SuratController as AdminSuratController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\OrderController;
-use App\Http\Controllers\Admin\SimpananController as AdminSimpananController;
+use App\Http\Controllers\Admin\EquipmentController;
 use App\Http\Controllers\Admin\MemberController;
 
 Route::get('/', function () {
@@ -49,13 +49,15 @@ Route::middleware(['auth', 'verified'])->prefix('member')->name('member.')->grou
         Route::post('/{order}/payment', [MarketplaceController::class, 'uploadPayment'])->name('payment');
     });
 
-    // Simpanan
-    Route::prefix('simpanan')->name('simpanan.')->group(function () {
-        Route::get('/', [MemberSimpananController::class, 'index'])->name('index');
-        Route::get('/create', [MemberSimpananController::class, 'create'])->name('create');
-        Route::post('/', [MemberSimpananController::class, 'store'])->name('store');
-        Route::get('/{simpanan}', [MemberSimpananController::class, 'show'])->name('show');
-        Route::get('/riwayat/history', [MemberSimpananController::class, 'history'])->name('history');
+    // Member Booking
+    Route::prefix('booking')->name('booking.')->group(function () {
+        Route::get('/', [MemberBookingController::class, 'index'])->name('index');
+        Route::get('/my-bookings', [MemberBookingController::class, 'myBookings'])->name('my-bookings');
+        Route::get('/{equipment}', [MemberBookingController::class, 'show'])->name('show');
+        Route::get('/{equipment}/create', [MemberBookingController::class, 'create'])->name('create');
+        Route::post('/{equipment}', [MemberBookingController::class, 'store'])->name('store');
+        Route::get('/detail/{booking}', [MemberBookingController::class, 'showBooking'])->name('detail');
+        Route::post('/detail/{booking}/payment', [MemberBookingController::class, 'uploadPayment'])->name('payment');
     });
 });
 
@@ -84,24 +86,26 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         Route::post('/{order}/status', [OrderController::class, 'updateStatus'])->name('status');
     });
 
-    // Simpanan Management
-    Route::prefix('simpanan')->name('simpanan.')->group(function () {
-        Route::get('/', [AdminSimpananController::class, 'index'])->name('index');
-        Route::get('/{simpanan}', [AdminSimpananController::class, 'show'])->name('show');
-        Route::post('/{simpanan}/approve', [AdminSimpananController::class, 'approve'])->name('approve');
-        Route::post('/{simpanan}/reject', [AdminSimpananController::class, 'reject'])->name('reject');
-        Route::get('/members/list', [AdminSimpananController::class, 'members'])->name('members');
-        Route::get('/members/{user}', [AdminSimpananController::class, 'memberDetail'])->name('member-detail');
+    // Admin Equipment
+    Route::resource('equipment', EquipmentController::class);
+
+    // Admin Bookings
+    Route::prefix('bookings')->name('bookings.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\BookingController::class, 'index'])->name('index');
+        Route::get('/{booking}', [\App\Http\Controllers\Admin\BookingController::class, 'show'])->name('show');
+        Route::post('/{booking}/approve', [\App\Http\Controllers\Admin\BookingController::class, 'approve'])->name('approve');
+        Route::post('/{booking}/reject', [\App\Http\Controllers\Admin\BookingController::class, 'reject'])->name('reject');
+        Route::post('/{booking}/status', [\App\Http\Controllers\Admin\BookingController::class, 'updateStatus'])->name('status');
     });
 
     // Member Management
     Route::resource('members', MemberController::class);
-});
+    });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+    Route::middleware('auth')->group(function () {
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    });
 
-require __DIR__ . '/auth.php';
+    require __DIR__ . '/auth.php';

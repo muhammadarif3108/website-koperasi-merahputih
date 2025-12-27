@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Equipment;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
@@ -76,6 +77,39 @@ class DatabaseSeeder extends Seeder
             'description' => 'Tepung terigu protein sedang',
             'price' => 12000,
             'stock' => 70,
+        ]);
+
+        // Create Sample Equipment
+        Equipment::create([
+            'name' => 'Traktor Kubota L3408',
+            'description' => 'Traktor pertanian 4WD dengan tenaga 34 HP',
+            'price_per_day' => 250000,
+            'stock' => 2,
+            'category' => 'traktor',
+        ]);
+
+        Equipment::create([
+            'name' => 'Mesin Panen Padi Quick G600',
+            'description' => 'Mesin combine harvester untuk panen padi',
+            'price_per_day' => 500000,
+            'stock' => 1,
+            'category' => 'mesin_panen',
+        ]);
+
+        Equipment::create([
+            'name' => 'Pompa Air Diesel 3 Inch',
+            'description' => 'Pompa air untuk irigasi sawah',
+            'price_per_day' => 100000,
+            'stock' => 3,
+            'category' => 'pompa_air',
+        ]);
+
+        Equipment::create([
+            'name' => 'Sprayer Knapsack 16L',
+            'description' => 'Alat semprot pestisida portable',
+            'price_per_day' => 25000,
+            'stock' => 5,
+            'category' => 'sprayer',
         ]);
     }
 }

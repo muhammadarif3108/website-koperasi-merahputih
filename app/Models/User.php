@@ -23,7 +23,7 @@ class User extends Authenticatable
 
     protected $casts = [
         'email_verified_at' => 'datetime',
-       
+
     ];
 
     public function isAdmin()
@@ -41,8 +41,8 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
 
-    public function simpanan()
+    public function bookings()
     {
-        return $this->hasMany(Simpanan::class);
+        return $this->hasMany(Booking::class);
     }
 }

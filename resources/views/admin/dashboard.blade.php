@@ -62,19 +62,18 @@
                     </a>
                 </div>
 
-                <!-- Simpanan Pending -->
+                <!-- Booking Pending -->
                 <div class="bg-gradient-to-br from-green-400 to-green-600 rounded-lg shadow-lg p-6 text-white">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm opacity-90">Simpanan Pending</p>
-                            <h3 class="text-3xl font-bold mt-2">{{ \App\Models\Simpanan::where('status', 'pending')->count() }}</h3>
+                            <p class="text-sm opacity-90">Booking Pending</p>
+                            <h3 class="text-3xl font-bold mt-2">{{ \App\Models\Booking::where('status', 'pending')->count() }}</h3>
                         </div>
                         <svg class="w-12 h-12 opacity-50" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" />
-                            <path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd" />
+                            <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
                     </div>
-                    <a href="{{ route('admin.simpanan.index') }}" class="mt-4 inline-block text-sm hover:underline">
+                    <a href="{{ route('admin.bookings.index') }}" class="mt-4 inline-block text-sm hover:underline">
                         Lihat Semua →
                     </a>
                 </div>
@@ -110,29 +109,30 @@
                     </div>
                 </div>
 
-                <!-- Recent Orders -->
+                <!-- Recent Bookings -->
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6">
-                        <h4 class="text-lg font-semibold mb-4">Pesanan Terbaru</h4>
+                        <h4 class="text-lg font-semibold mb-4">Booking Terbaru</h4>
                         <div class="space-y-3">
-                            @forelse(\App\Models\Order::with(['user', 'product'])->latest()->take(5)->get() as $order)
+                            @forelse(\App\Models\Booking::with(['user', 'equipment'])->latest()->take(5)->get() as $booking)
                             <div class="flex items-center justify-between border-b pb-2">
                                 <div>
-                                    <p class="text-sm font-medium text-gray-900">{{ $order->user->name }}</p>
-                                    <p class="text-xs text-gray-500">{{ $order->product->name }}</p>
+                                    <p class="text-sm font-medium text-gray-900">{{ $booking->user->name }}</p>
+                                    <p class="text-xs text-gray-500">{{ $booking->equipment->name }}</p>
                                 </div>
                                 <span class="px-2 py-1 text-xs rounded-full 
-                                        {{ $order->status === 'pending' ? 'bg-yellow-100 text-yellow-800' : '' }}
-                                        {{ $order->status === 'diproses' ? 'bg-blue-100 text-blue-800' : '' }}
-                                        {{ $order->status === 'selesai' ? 'bg-green-100 text-green-800' : '' }}">
-                                    {{ ucfirst($order->status) }}
+                                        {{ $booking->status === 'pending' ? 'bg-yellow-100 text-yellow-800' : '' }}
+                                        {{ $booking->status === 'disetujui' ? 'bg-green-100 text-green-800' : '' }}
+                                        {{ $booking->status === 'berlangsung' ? 'bg-blue-100 text-blue-800' : '' }}
+                                        {{ $booking->status === 'selesai' ? 'bg-gray-100 text-gray-800' : '' }}">
+                                    {{ ucfirst($booking->status) }}
                                 </span>
                             </div>
                             @empty
-                            <p class="text-sm text-gray-500">Belum ada pesanan</p>
+                            <p class="text-sm text-gray-500">Belum ada booking</p>
                             @endforelse
                         </div>
-                        <a href="{{ route('admin.orders.index') }}" class="mt-4 inline-block text-sm text-blue-600 hover:text-blue-800">
+                        <a href="{{ route('admin.bookings.index') }}" class="mt-4 inline-block text-sm text-blue-600 hover:text-blue-800">
                             Lihat Semua →
                         </a>
                     </div>
