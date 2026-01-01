@@ -23,7 +23,7 @@ class User extends Authenticatable
 
     protected $casts = [
         'email_verified_at' => 'datetime',
-
+        'saldo_simpanan' => 'decimal:2'
     ];
 
     public function isAdmin()
@@ -31,9 +31,9 @@ class User extends Authenticatable
         return $this->role === 'admin';
     }
 
-    public function surat()
+    public function simpanan()
     {
-        return $this->hasMany(Surat::class);
+        return $this->hasMany(Simpanan::class);
     }
 
     public function orders()

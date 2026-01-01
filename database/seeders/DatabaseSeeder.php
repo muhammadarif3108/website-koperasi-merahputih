@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Admin Koperasi',
             'email' => 'admin@koperasi.com',
-            'password' => Hash::make('password'),
+            'password' => Hash::make('admin123'),
             'role' => 'admin',
             'phone' => '081234567890',
             'address' => 'Jl. Koperasi No. 1',
@@ -24,21 +24,21 @@ class DatabaseSeeder extends Seeder
 
         // Create Member Demo
         User::create([
-            'name' => 'Budi Santoso',
-            'email' => 'budi@member.com',
-            'password' => Hash::make('password'),
+            'name' => 'Muhammad Arif',
+            'email' => 'arif@koperasi.com',
+            'password' => Hash::make('arif123'),
             'role' => 'member',
-            'phone' => '081234567891',
-            'address' => 'Jl. Anggota No. 1',
+            'phone' => '081333583159',
+            'address' => 'Ds. Rejotengah, Dsn. Kebontengah, Kec. Deket, Kab. Lamongan',
             'saldo_simpanan' => 500000,
         ]);
 
         User::create([
-            'name' => 'Siti Aminah',
-            'email' => 'siti@member.com',
-            'password' => Hash::make('password'),
+            'name' => 'Syamsa Al Hadi',
+            'email' => 'syamsa@koperasi.com',
+            'password' => Hash::make('syamsa123'),
             'role' => 'member',
-            'phone' => '081234567892',
+            'phone' => '081234567890',
             'address' => 'Jl. Anggota No. 2',
             'saldo_simpanan' => 750000,
         ]);
